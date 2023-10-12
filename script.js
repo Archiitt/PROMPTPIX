@@ -25,3 +25,19 @@ const updateImageCard = (imgDataArray) => {
     
     // Select the download button within the image card
     const downloadBtn = imgCard.querySelector(".download-btn");
+
+                           // Set the image source to the AI-generated image data
+    const aiGeneratedImage = `data:image/jpeg;base64,${imgObject.b64_json}`;
+    imgElement.src = aiGeneratedImage;
+
+    // When the image is loaded, remove the loading class and set download attributes
+    imgElement.onload = () => {
+      // Remove the "loading" class to indicate image has finished loading
+      imgCard.classList.remove("loading");
+
+      // Set the download link to the AI-generated image and specify download filename
+      downloadBtn.setAttribute("href", aiGeneratedImage);
+      downloadBtn.setAttribute("download", `${new Date().getTime()}.jpg`);
+    }
+  });
+}
