@@ -59,3 +59,24 @@ const generateAiImages = async (userPrompt, userImgQuantity) => {
         response_format: "b64_json" // Response format for image data
       }),
     });
+    // Throw an error message if the API response is unsuccessful
+    if (!response.ok) throw new Error("Failed to generate AI images. Make sure your API key is valid.");
+
+    // Parse the response data to extract image information
+    const { data } = await response.json(); // Get data from the response
+
+    // Update the image cards with the generated image data
+    updateImageCard([...data]);
+  } catch (error) {
+    // If an error occurs during the API request, display an alert with the error message
+    alert(error.message);
+  } finally {
+    // Regardless of success or failure, re-enable the generate button and update its text
+    generateBtn.removeAttribute("disabled");
+    generateBtn.innerText = "Generate";
+
+    // Set the image generation flag to false to allow subsequent generation requests
+    isImageGenerating = false;
+  }
+}
+
