@@ -41,3 +41,21 @@ const updateImageCard = (imgDataArray) => {
     }
   });
 }
+// Async function to generate AI images based on user input
+const generateAiImages = async (userPrompt, userImgQuantity) => {
+  try {
+    // Send a request to the OpenAI API to generate images based on user inputs
+    const response = await fetch("https://api.openai.com/v1/images/generations", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${OPENAI_API_KEY}`,
+      },
+      // Prepare the request body with user-provided prompt and image quantity
+      body: JSON.stringify({
+        prompt: userPrompt,
+        n: userImgQuantity,
+        size: "512x512", // Image size specification
+        response_format: "b64_json" // Response format for image data
+      }),
+    });
