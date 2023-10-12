@@ -96,3 +96,22 @@ const handleImageGeneration = (e) => {
   isImageGenerating = true;
 }
 
+  // Creating HTML markup for image cards with loading state
+  const imgCardMarkup = Array.from({ length: userImgQuantity }, () => 
+      `<div class="img-card loading">
+        <img src="images/loader.svg" alt="AI generated image">
+        <a class="download-btn" href="#">
+          <img src="images/download.svg" alt="download icon">
+        </a>
+      </div>`
+  ).join("");
+
+  // Set the image gallery's inner HTML to the generated image card markup
+  imageGallery.innerHTML = imgCardMarkup;
+
+  // Call the function to generate AI images based on user input
+  generateAiImages(userPrompt, userImgQuantity);
+}
+
+// Attach an event listener to the form's submit event to handle image generation
+generateForm.addEventListener("submit", handleImageGeneration);
