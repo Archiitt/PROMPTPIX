@@ -13,3 +13,15 @@ const OPENAI_API_KEY = "sk-";
 // Variable to track whether image generation is in progress
 let isImageGenerating = false;
 
+// Function to update image cards in the image gallery based on provided image data array
+const updateImageCard = (imgDataArray) => {
+  // Iterate through each image data object in the array
+  imgDataArray.forEach((imgObject, index) => {
+    // Select the image card for the current image based on index
+    const imgCard = imageGallery.querySelectorAll(".img-card")[index];
+    
+    // Select the image element within the image card
+    const imgElement = imgCard.querySelector("img");
+    
+    // Select the download button within the image card
+    const downloadBtn = imgCard.querySelector(".download-btn");
