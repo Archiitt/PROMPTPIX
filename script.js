@@ -79,4 +79,20 @@ const generateAiImages = async (userPrompt, userImgQuantity) => {
     isImageGenerating = false;
   }
 }
+// Function to handle the image generation process
+const handleImageGeneration = (e) => {
+  e.preventDefault();
+
+  // Check if image generation is already in progress, if so, return
+  if (isImageGenerating) return;
+
+  // Get user input for the prompt and the desired number of images to generate
+  const userPrompt = e.srcElement[0].value;
+  const userImgQuantity = parseInt(e.srcElement[1].value);
+
+  // Disable the generate button, update its text, and set the generation flag
+  generateBtn.setAttribute("disabled", true);
+  generateBtn.innerText = "Generating";
+  isImageGenerating = true;
+}
 
