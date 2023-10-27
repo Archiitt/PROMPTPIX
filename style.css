@@ -17,6 +17,7 @@
   background-size: cover;
   background-position: center;
 }
+
 .image-generator::before {
   content: "";
   position: absolute;
